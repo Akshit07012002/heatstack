@@ -1,0 +1,228 @@
+.fullpage-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 24px;
+  gap: 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.fullpage-header {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding: 16px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  box-sizing: border-box;
+}
+
+.fullpage-header-row {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.fullpage-header-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  justify-content: flex-start;
+
+  &:first-child {
+    flex: 2;
+    min-width: 300px;
+  }
+
+  &:last-child {
+    flex: 0 0 auto;
+    min-width: 180px;
+    justify-content: center;
+  }
+}
+
+.fullpage-field {
+  font-size: 1.1rem !important;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.button-group-wrapper {
+  margin-top: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.select-wrapper {
+  display: flex;
+  width: 100%;
+  min-width: 200px;
+}
+
+.button-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.show-heatmap-button {
+  width: 100%;
+  min-width: 160px;
+  height: 48px !important;
+  min-height: 48px !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.heatmap-button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.heatmap-button {
+  border-radius: 28px;
+  padding: 16px 24px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  height: 48px;
+  min-width: 140px;
+  width: auto;
+  transition: all 0.2s ease;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border: 1px solid #6c5ce7 !important;
+  background-color: white !important;
+  color: #6c5ce7 !important;
+  
+  svg {
+    color: #6c5ce7 !important;
+    margin-right: 8px;
+  }
+  
+  &.selected {
+    background-color: #6c5ce7 !important;
+    color: white !important;
+    border-color: #6c5ce7 !important;
+    box-shadow: 0 2px 8px rgba(108, 92, 231, 0.3);
+    
+    svg,
+    svg path,
+    svg g,
+    .cs-icon,
+    .cs-icon svg,
+    .cs-icon svg path {
+      color: white !important;
+      fill: white !important;
+      stroke: white !important;
+    }
+    
+    // Target Venus Components icon wrapper
+    [class*="icon"],
+    [class*="Icon"] {
+      svg,
+      svg path,
+      svg g {
+        color: white !important;
+        fill: white !important;
+        stroke: white !important;
+      }
+    }
+  }
+  
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateX(2px);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.heatmap-display {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: 32px;
+  border: 1px solid #e9ecef;
+  overflow: hidden;
+}
+
+.heatmap-loading,
+.heatmap-error,
+.heatmap-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  color: #6c757d;
+  
+  p {
+    margin: 0;
+    font-size: 1rem;
+  }
+}
+
+.heatmap-error {
+  color: #dc3545;
+  
+  svg {
+    color: #dc3545;
+  }
+}
+
+.heatmap-visualization {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heatmap-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+  background-color: #ffffff;
+  display: block;
+}
+

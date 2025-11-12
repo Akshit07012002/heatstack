@@ -1,0 +1,28 @@
+{
+  "name": "marketplace-app-template-api",
+  "version": "1.0.0",
+  "description": "Contentstack App Lambda Function",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^1.6.3"
+  },
+  "scripts": {
+    "test": "jest",
+    "dev": "nodemon server.js",
+    "prettify": "prettier --write .",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx . --ignore-pattern './node_modules/' --ignore-pattern './buid/'",
+    "precommit": "npm run prettify && npm run lint:fix"
+  },
+  "author": "Contentstack",
+  "license": "ISC",
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^19.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.5.1",
+    "express": "^4.17.1",
+    "jest": "^27.4.4",
+    "nodemon": "^2.0.14"
+  }
+}

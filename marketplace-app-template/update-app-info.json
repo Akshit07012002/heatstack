@@ -1,0 +1,61 @@
+{
+    "webhook": {
+        "signed": true,
+        "enabled":true,
+        "target_url":"insert your lambda url here",
+        "channels": [
+            "content_types.entries.environments.publish.success"
+        ],
+        "app_lifecycle_enabled": true,
+        "retry_policy": "manual"
+    },
+    "ui_location": {
+        "locations": [
+            {
+                "type": "cs.cm.stack.custom_field",
+                "meta": [
+                    {
+                        "signed": true,
+                        "path": "/custom-field", 
+                        "name": "Custom Field",
+                        "data_type": "json"
+                    }
+                ]
+            },   
+            {
+                "type": "cs.cm.stack.sidebar",
+                "meta": [
+                    {
+                        "signed": true,
+                        "path": "/sidebar-widget", 
+                        "name": "Sidebar Widget",
+                        "data_type": "json"
+                    }
+                ]
+            },
+            {
+                "type": "cs.cm.stack.dashboard",
+                "meta": [
+                    {
+                        "signed": true,
+                        "path": "/dashboard-widget", 
+                        "name": "Dashboard Widget",
+                        "data_type": "json"
+                    }
+                ]
+            },   
+            {
+                "type": "cs.cm.stack.config",
+                "meta": [
+                    {
+                        "signed": true,
+                        "path": "/config",
+                        "name": "Configuration"
+                    }
+                ]
+            }
+        ],
+        "signed": true,
+        "base_url": "insert your app url here"
+    }
+}
