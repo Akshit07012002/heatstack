@@ -153,9 +153,21 @@
   align-items: center !important;
   justify-content: center !important;
   margin: 0 !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  &:focus {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
   }
 
   svg {

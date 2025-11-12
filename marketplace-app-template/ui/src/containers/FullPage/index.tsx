@@ -149,7 +149,6 @@ const FullPage: React.FC = function () {
                     || [];
                 console.log("FullPage - websites:", websites);
 
-                // Convert websites array to Select options format
                 const websiteSelectOptions = websites.map((url: string) => ({
                     label: url,
                     value: url,
@@ -159,11 +158,17 @@ const FullPage: React.FC = function () {
 
                 setState({
                     config,
-                    location: appSdk.location,
+                    location: appSdk?.location,
                     appSdkInitialized: true,
                 });
 
-                // Don't auto-fetch heatmap data, wait for user to click "Show Heatmap"
+                try {
+                    const lyticsResponse = await services.getLyticsSegments();
+                    console.log("FullPage - Lytics segments response:", lyticsResponse);
+                } catch (error) {
+                    console.error("Error fetching Lytics segments:", error);
+                }
+
             })
             .catch((error) => {
                 console.error("appSdk initialization error", error);
@@ -175,10 +180,8 @@ const FullPage: React.FC = function () {
         setError(null);
 
         try {
-            // Fetch metrics from API
             const response = await services.getHeatmapMetrics(heatmapType, state.config);
 
-            // Extract metrics and URL from response
             const metrics = response?.metrics || response?.data || response;
             const heatmapUrl = response?.url || response?.heatmapUrl || '';
 
@@ -288,7 +291,7 @@ const FullPage: React.FC = function () {
                                         onClick={handleShowHeatmap}
                                         disabled={isLoading || !selectedHeatmap}
                                         className="show-heatmap-button"
-                                        
+
                                     >
                                         {showHeatmap ? "Hide Heatmap" : "Show Heatmap"}
                                     </Button>

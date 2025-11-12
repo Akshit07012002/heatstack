@@ -27,12 +27,12 @@ const makeAPICall = () =>
 const getHeatmapMetrics = async (heatmapType) => {
   // You can construct the API URL based on heatmapType
   // For example: `${constants.HEATMAP_API_BASE_URL}/metrics?type=${heatmapType}`
-  const heatmapApiUrl = constants.HEATMAP_API_URL 
+  const heatmapApiUrl = constants.HEATMAP_API_URL
     ? `${constants.HEATMAP_API_URL}?type=${heatmapType}`
     : constants.EXAMPLE_API_URL; // Fallback to example URL
-  
+
   const response = await _makeThirdPartyApiCall(heatmapApiUrl, "GET");
-  
+
   // Return the response with metrics and URL
   // Adjust this structure based on your actual API response format
   return {

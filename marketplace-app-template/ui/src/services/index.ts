@@ -3,7 +3,7 @@ import axios from "axios";
 /* Import other node modules */
 /* Import our modules */
 
-const makeAnApiCall = async (url: any, method: any, data: any = undefined) => {
+const makeAnApiCall = async (url: any, method: any, data: any = undefined, customHeaders: any = {}) => {
   try {
     const response = await axios({
       url,
@@ -13,6 +13,7 @@ const makeAnApiCall = async (url: any, method: any, data: any = undefined) => {
         // eslint-disable-next-line @typescript-eslint/naming-convention
         // you can add you custom headers here
         "Access-Control-Allow-Origin": "*",
+        ...customHeaders,
       },
     });
     return response?.data;
@@ -39,16 +40,30 @@ const getDataFromAPI = (data: any = undefined) =>
 
 /* Function to fetch heatmap metrics from the API */
 const getHeatmapMetrics = async (heatmapType: string, config: any = {}) => {
-  const API_BASE_URL = process.env.REACT_APP_API_URL;
-  if (!API_BASE_URL) {
-    throw new Error("API URL is not configured");
+  const { HEATMAP_METRICS_API_URL } = process.env;
+  if (!HEATMAP_METRICS_API_URL) {
+    throw new Error("HEATMAP METRICS API URL is not configured");
   }
-  
-  const url = `${API_BASE_URL}?heatmapType=${heatmapType}&stack_apiKey=${config.stack_apiKey || ''}`;
+
+  const url = `${HEATMAP_METRICS_API_URL}?heatmapType=${heatmapType}&stack_apiKey=${config.stack_apiKey || ''}`;
   return makeAnApiCall(url, "GET");
+};
+
+const getLyticsSegments = async () => {
+  const { REACT_APP_LYTICS_API_URL } = process.env;
+  console.log("REACT_APP_LYTICS_API_URL:", REACT_APP_LYTICS_API_URL); // eslint-disable-line no-console
+  if (!REACT_APP_LYTICS_API_URL) {
+    throw new Error("LYTICS API URL is not configured");
+  }
+
+  return makeAnApiCall(
+    REACT_APP_LYTICS_API_URL,
+    "GET"
+  );
 };
 
 export default {
   getDataFromAPI,
   getHeatmapMetrics,
+  getLyticsSegments,
 };

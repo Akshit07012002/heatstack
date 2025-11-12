@@ -23,6 +23,7 @@ const Chatbot: React.FC = function () {
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const chatWindowRef = useRef<HTMLDivElement>(null);
     const messagesContainerRef = useRef<HTMLDivElement>(null);
+    const inputContainerRef = useRef<HTMLDivElement>(null);
 
     const scrollToBottom = () => {
         if (messagesContainerRef.current) {
@@ -64,6 +65,26 @@ const Chatbot: React.FC = function () {
         }, 1000);
     };
 
+    useEffect(() => {
+        const container = inputContainerRef.current;
+        if (!container) {
+            return undefined;
+        }
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            const target = e.target as HTMLElement;
+            if (target.tagName === 'INPUT' && e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleSendMessage();
+            }
+        };
+
+        container.addEventListener('keydown', handleKeyDown, true);
+        return () => {
+            container.removeEventListener('keydown', handleKeyDown, true);
+        };
+    }, [inputValue, handleSendMessage]);
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
     };
@@ -81,7 +102,7 @@ const Chatbot: React.FC = function () {
                 <div className="chatbot-header">
                     <div className="chatbot-header-content">
                         <Icon icon="MessageCircle" size="small" />
-                        <span className="chatbot-title">Chat Support</span>
+                        <span className="chatbot-title">Heatstack Chatbot</span>
                     </div>
                     <Button
                         buttonType="text"
@@ -112,7 +133,11 @@ const Chatbot: React.FC = function () {
                     <div ref={messagesEndRef} />
                 </div>
 
-                <div className="chatbot-input-container" role="form">
+                <div
+                    ref={inputContainerRef}
+                    className="chatbot-input-container"
+                    role="form"
+                >
                     <TextInput
                         className="chatbot-input"
                         placeholder="Type your message..."
