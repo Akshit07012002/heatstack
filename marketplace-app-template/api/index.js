@@ -1,6 +1,6 @@
 const constants = require("./constants");
 const utils = require("./utils");
-const { makeAPICall, getHeatmapMetrics } = require("./handler");
+const { makeAPICall, getHeatmapMetrics, getLyticsSegments } = require("./handler");
 
 exports.handler = async ({ queryStringParameters: query, body }) => {
   try {
@@ -15,12 +15,22 @@ exports.handler = async ({ queryStringParameters: query, body }) => {
     }
 
     // Check if this is a heatmap metrics request
-    if (query.heatmapType) {
-      const heatmapData = await getHeatmapMetrics(query.heatmapType);
+    if (query.origin) {
+      const heatmapData = await getHeatmapMetrics(query.origin);
       return utils.getResponseObject(
         constants.HTTP_CODES.OK,
         query,
         heatmapData
+      );
+    }
+
+    // Check if this is a Lytics segments request
+    if (query.lytics === "true" || query.action === "lytics") {
+      const lyticsData = await getLyticsSegments();
+      return utils.getResponseObject(
+        constants.HTTP_CODES.OK,
+        query,
+        lyticsData
       );
     }
 

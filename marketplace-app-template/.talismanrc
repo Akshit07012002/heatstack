@@ -2,4 +2,8 @@ fileignoreconfig:
 - filename: .github/workflows/secrets-scan.yml
   ignore_detectors:
     - filecontent
+- filename: marketplace-app-template/ui/src/services/index.ts
+  checksum: b608e8c07617ad8ec4399d3464debea389e4e8a531ec067151d0775d1fa13f01
+- filename: marketplace-app-template/ui/src/components/Chatbot/index.tsx
+  checksum: 9b04aa4ef0842b203732cfed5ffba9f9d2539c92cc078d0b19751c575d6dcd12
 version: "1.0"
