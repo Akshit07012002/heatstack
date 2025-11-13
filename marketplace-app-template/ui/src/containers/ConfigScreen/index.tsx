@@ -30,7 +30,7 @@ const ConfigScreen: React.FC = function () {
       },
       serverConfiguration: {},
     },
-    setInstallationData: (): any => { },
+    setInstallationData: (): any => {},
     appSdkInitialized: false,
   });
 

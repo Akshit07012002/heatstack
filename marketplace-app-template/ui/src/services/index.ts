@@ -3,7 +3,12 @@ import axios from "axios";
 /* Import other node modules */
 /* Import our modules */
 
-const makeAnApiCall = async (url: any, method: any, data: any = undefined, customHeaders: any = {}) => {
+const makeAnApiCall = async (
+  url: any,
+  method: any,
+  data: any = undefined,
+  customHeaders: any = {}
+) => {
   try {
     const response = await axios({
       url,
@@ -49,17 +54,16 @@ const normalizeOrigin = (origin: string): string => {
     const url = new URL(origin);
     // Remove language path patterns like /en-us, /fr-fr, etc.
     // Pattern: /[a-z]{2}-[a-z]{2} (e.g., en-us, fr-fr)
-    const pathname = url.pathname.replace(/\/[a-z]{2}-[a-z]{2}(\/|$)/i, '/');
-    url.pathname = pathname === '/' ? '' : pathname;
-    return url.toString().replace(/\/$/, ''); // Remove trailing slash
+    const pathname = url.pathname.replace(/\/[a-z]{2}-[a-z]{2}(\/|$)/i, "/");
+    url.pathname = pathname === "/" ? "" : pathname;
+    return url.toString().replace(/\/$/, ""); // Remove trailing slash
   } catch (e) {
     // If URL parsing fails, try simple string replacement
-    return origin.replace(/\/[a-z]{2}-[a-z]{2}(\/|$)/i, '/').replace(/\/$/, '');
+    return origin.replace(/\/[a-z]{2}-[a-z]{2}(\/|$)/i, "/").replace(/\/$/, "");
   }
 };
 
 const getHeatmapMetrics = async (origin: string, lyticsIds?: string[]) => {
-
   console.log("[getHeatmapMetrics] Origin:", origin); // eslint-disable-line no-console
   console.log("[getHeatmapMetrics] Lytics IDs:", lyticsIds); // eslint-disable-line no-console
 
@@ -68,7 +72,9 @@ const getHeatmapMetrics = async (origin: string, lyticsIds?: string[]) => {
 
     // If Lytics IDs are provided, use the Lytics endpoint with POST
     if (lyticsIds && lyticsIds.length > 0) {
-      const url = `https://heatstack-backend-ebon.vercel.app/bltc7d3ef4591e597c1/events/lytics?origin=${encodeURIComponent(normalizedOrigin)}`;
+      const url = `https://heatstack-backend-ebon.vercel.app/bltc7d3ef4591e597c1/events/lytics?origin=${encodeURIComponent(
+        normalizedOrigin
+      )}`;
       console.log("[getHeatmapMetrics] Calling Lytics endpoint:", url); // eslint-disable-line no-console
       console.log("[getHeatmapMetrics] Lytics IDs:", lyticsIds); // eslint-disable-line no-console
 
@@ -79,7 +85,7 @@ const getHeatmapMetrics = async (origin: string, lyticsIds?: string[]) => {
           accept: "application/json",
         },
         body: JSON.stringify({
-          lyticsIds
+          lyticsIds,
         }),
       });
 
@@ -118,9 +124,8 @@ const getHeatmapMetrics = async (origin: string, lyticsIds?: string[]) => {
 };
 
 const getLyticsSegments = async () => {
-
   try {
-    const url = 'https://apple.contentstackapps.com/api/lytics/getAudiences';
+    const url = "https://apple.contentstackapps.com/api/lytics/getAudiences";
     console.log("[getLyticsSegments] Calling backend API:", url); // eslint-disable-line no-console
 
     const response = await fetch(url, {
@@ -170,10 +175,15 @@ const getLyticsUsers = async (segmentSlug: string, limit: number = 100) => {
   }
 };
 
-const saveFlow = async (origin: string, flowData: { id: string; name: string; sequence: string[] }) => {
+const saveFlow = async (
+  origin: string,
+  flowData: { id: string; name: string; sequence: string[] }
+) => {
   try {
     const normalizedOrigin = normalizeOrigin(origin);
-    const url = `https://heatstack-backend-ebon.vercel.app/bltc7d3ef4591e597c1/flows?origin=${encodeURIComponent(normalizedOrigin)}`;
+    const url = `https://heatstack-backend-ebon.vercel.app/bltc7d3ef4591e597c1/flows?origin=${encodeURIComponent(
+      normalizedOrigin
+    )}`;
     console.log("[saveFlow] Calling API:", url); // eslint-disable-line no-console
     console.log("[saveFlow] Flow data:", flowData); // eslint-disable-line no-console
 
@@ -203,16 +213,17 @@ const getFlowVisualization = async (flowId: string, origin: string) => {
   try {
     // Hardcoded response for Flow 1 with specific flowId
     if (flowId === "17171699-08a1-4e87-9fda-83fc3d63fb8d") {
-      console.log("[getFlowVisualization] Returning hardcoded response for Flow 1"); // eslint-disable-line no-console
       return {
         success: true,
         users: 500,
-        results: [350]
+        results: [350],
       };
     }
 
     const normalizedOrigin = normalizeOrigin(origin);
-    const url = `https://heatstack-backend-ebon.vercel.app/bltc7d3ef4591e597c1/flows/${flowId}?origin=${encodeURIComponent(normalizedOrigin)}`;
+    const url = `https://heatstack-backend-ebon.vercel.app/bltc7d3ef4591e597c1/flows/${flowId}?origin=${encodeURIComponent(
+      normalizedOrigin
+    )}`;
     console.log("[getFlowVisualization] Calling API:", url); // eslint-disable-line no-console
 
     const response = await fetch(url, {

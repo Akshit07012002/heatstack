@@ -3,7 +3,7 @@ import { render } from "@testing-library/react/pure";
 // import FullPage from "./index";
 
 test("Dummy test case", () => {
-    expect(true).toBeTruthy();
+  expect(true).toBeTruthy();
 });
 
 // ID attribute of all the elements in config screen.
@@ -38,5 +38,3 @@ test("Dummy test case", () => {
 //   fireEvent.keyDown(inputElement);
 //   fireEvent.keyUp(inputElement);
 // });
-
-

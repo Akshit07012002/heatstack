@@ -223,18 +223,18 @@ a:hover {
   border: 1px solid #6c5ce7 !important;
   background-color: white !important;
   color: #6c5ce7 !important;
-  
+
   svg {
     color: #6c5ce7 !important;
     margin-right: 8px;
   }
-  
+
   &.selected {
     background-color: #6c5ce7 !important;
     color: white !important;
     border-color: #6c5ce7 !important;
     box-shadow: 0 2px 8px rgba(108, 92, 231, 0.3);
-    
+
     svg,
     svg path,
     svg g,
@@ -245,7 +245,7 @@ a:hover {
       fill: white !important;
       stroke: white !important;
     }
-    
+
     // Target Venus Components icon wrapper
     [class*="icon"],
     [class*="Icon"] {
@@ -258,12 +258,12 @@ a:hover {
       }
     }
   }
-  
+
   &:hover:not(:disabled) {
     opacity: 0.9;
     transform: translateX(2px);
   }
-  
+
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
@@ -293,7 +293,7 @@ a:hover {
   gap: 16px;
   text-align: center;
   color: #6c757d;
-  
+
   p {
     margin: 0;
     font-size: 1rem;
@@ -302,7 +302,7 @@ a:hover {
 
 .heatmap-error {
   color: #dc3545;
-  
+
   svg {
     color: #dc3545;
   }
